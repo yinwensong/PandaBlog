@@ -15,8 +15,8 @@ export default {
       name: 'Panda Change',
       desc: '@~hahah',
       imgs: {
-        bg: require('../static/images/1.jpg'),
-        url: require('../static/images/panda.png')
+        bg: require('~/static/images/1.jpg'),
+        url: require('~/static/images/panda.png')
       }
     }
   }
