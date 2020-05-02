@@ -29,9 +29,6 @@ export default {
 .el-header{
   padding:0;
 }
-.el-main{
-  border:1px solid red;
-}
  .el-container {
   width: 80%;
   margin: 0 auto;
@@ -40,9 +37,6 @@ export default {
   background: #fff;
   min-height: calc(100vh - 150px);
   padding:35px;
-}
-.el-main div{
-  border:1px solid #000;
 }
 .el-footer{
   padding:0;

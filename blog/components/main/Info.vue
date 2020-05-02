@@ -159,7 +159,6 @@ export default {
     position: relative;
     padding:5px;
     box-sizing: border-box;
-    /* border:1px solid #f2f2f2; */
 }
 #info .third-line .list .img-border{
     width: 60px;
