@@ -148,10 +148,8 @@ export default {
 #info .third-line .list li a{
     display:flex;
     align-items: center;
-    text-decoration: none;
 }
 #info .third-line .list li {
-    list-style: none;
     overflow: hidden;
     border-radius: 5px;
     margin-right: 5px;
@@ -221,6 +219,5 @@ export default {
     letter-spacing: 1px;
     font-size: 12px;
     color: #FC624D;
-    text-decoration: none;
 }
 </style>

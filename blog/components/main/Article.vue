@@ -1,7 +1,5 @@
 <template>
   <el-row id="article">
-    <!-- <h2 class="title">文章预览</h2> -->
-    <!-- <el-col :span="1"> </el-col> -->
     <el-col :span="22">
       <ul class="articleList">
         <li v-for="(temp, index) in articleList" :key="index">
@@ -24,6 +22,14 @@
           </a>
         </li>
       </ul>
+      <div class="page">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          page-size="6"
+          :total="pagesTotal">
+        </el-pagination>
+      </div>
     </el-col>
   </el-row>
 </template>
@@ -32,6 +38,7 @@
 export default {
   data () {
     return {
+      pagesTotal: 200,
       img: {
         dianzan: require('~/static/images/dianzan.svg'),
         zaning: require('~/static/images/zaning.svg')
@@ -101,12 +108,6 @@ export default {
   margin:0;
   color:#333;
 }
-#article ul,
-#article ul li{
-  margin:0;
-  padding:0;
-  list-style: none;
-}
 #article ul li {
   border: 1px solid #b8b2b2;
   padding: 40px 40px 25px 40px;
@@ -114,18 +115,16 @@ export default {
 #article ul li:hover{
   background-color:rgba(244,244,244,0.5);
 }
-#article ul li a{
-  text-decoration: none;
-}
 #article ul li a h3{
   margin-top:0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  height:33px;
 }
 #article ul li a h3 span{
   color:#333;
-  padding-bottom:4px;
+  padding-bottom:5px;
   border-bottom:3px solid #ddd;
 }
 #article ul li a p{
@@ -147,4 +146,16 @@ export default {
 #article ul li a .message span i{
   margin-right:5px;
 }
+#article .more{
+  float:right;
+  margin-top:10px;
+}
+#article .page {
+  position: relative;
+  left:50%;
+  transform: translateX(-50%);
+  margin-top:15px;
+  display: inline-block;
+}
+
 </style>
