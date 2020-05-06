@@ -24,7 +24,8 @@ export default {
 </script>
 <style scoped>
 .errorPage{
-    background-color:#f4f4f4;
+    height:750px;
+    background-color:#fff;
     display:flex;
     justify-content: center;
     align-items: center;

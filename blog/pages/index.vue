@@ -1,15 +1,14 @@
 <template>
   <el-main>
-    <v-main></v-main>
+    <Article />
   </el-main>
 </template>
 
 <script>
-import VMain from '../components/home/Main'
-
+import Article from '../components/main/Article'
 export default {
   components: {
-    VMain
+    Article,
   }
 }
 </script>

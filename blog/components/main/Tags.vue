@@ -84,7 +84,7 @@ export default {
 <style>
 #tags {
   position: relative;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 #tags .el-image{
   display:block;
