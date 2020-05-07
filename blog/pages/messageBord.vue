@@ -13,9 +13,9 @@
   </div>
 </template>
 <script>
+
 import SendMessage from "~/components/argument/messageInput.vue";
 import MessageList from "~/components/argument/messageList.vue";
-
 
 export default {
   components: {
@@ -33,6 +33,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .bord {
   width: 95%;

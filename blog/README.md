@@ -21,4 +21,11 @@ $ npm run generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+  // "config": {
+  //   "nuxt": {
+  //     "host": "0.0.0.0",
+  //     "port": "23000"
+  //   }
+  // }
+
 

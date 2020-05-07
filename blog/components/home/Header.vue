@@ -102,6 +102,11 @@ export default {
 #header-right .el-menu--horizontal > .el-menu-item {
   float: right;
 }
+/* .el-header {
+  position: fixed;
+  top:0;
+  left:0;
+} */
 .el-header,
 .el-footer {
   padding: 0;

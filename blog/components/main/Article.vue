@@ -1,6 +1,6 @@
 <template>
   <el-row id="article">
-    <el-col :span="22">
+    <el-col :span="24">
       <ul class="articleList">
         <li v-for="(temp, index) in articleList" :key="index">
           <a href = "#">
@@ -104,6 +104,7 @@ export default {
 }
 </script>
 <style scoped>
+
 #article .title {
   margin:0;
   color:#333;
