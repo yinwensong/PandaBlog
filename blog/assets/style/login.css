@@ -1,0 +1,50 @@
+.wrap {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+.wrap .box {
+  position: relative;
+  width: 400px;
+  min-height: 300px;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.wrap .box .row {
+  margin: 15px;
+}
+.wrap .box .row a.nuxt-link-active {
+  color: #909399;
+  font-size: 14px;
+  float: right;
+}
+.wrap .box .row .left {
+  margin-top: 20px;
+}
+.wrap .box .row .right {
+  float: right;
+  margin-top: 20px;
+}
+.wrap .box .row .btn {
+  width: 100%;
+  margin-top: 30px;
+}
+.wrap .box .close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.wrap .box .close-btn:hover {
+  transform: scale(1.5);
+}

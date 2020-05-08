@@ -2,26 +2,22 @@
   <div class="wrap">
     <my-canvas></my-canvas>
     <div class="box">
-      <div class="close-btn" @click="closeLogin">
-        <i class="el-icon-close"></i>
+      <div class="row">
+        <el-input placeholder="邮箱" v-model="input"></el-input>
       </div>
       <div class="row">
-        <el-input placeholder="请输入用户名/邮箱" v-model="input"></el-input>
+        <el-input placeholder="密码" v-model="password" show-password></el-input>
       </div>
       <div class="row">
-        <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
+        <el-input placeholder="再次确认密码" v-model="password" show-password></el-input>
       </div>
       <div class="row">
-        <nuxt-link to="/register">
-          <el-link type="success" class="left">立即注册</el-link>
+        <el-button type="primary" plain class="btn">立即注册</el-button>
+      </div>
+      <div class="row">
+        <nuxt-link to="/login">
+          <el-link type="info">返回登录页</el-link>
         </nuxt-link>
-        <el-link type="info" class="right">忘记密码？</el-link>
-      </div>
-      <div class="row">
-        <el-button type="primary" plain class="btn">登录</el-button>
-      </div>
-      <div class="row">
-        <el-link type="info" @click="closeLogin">暂不登录</el-link>
       </div>
     </div>
   </div>
