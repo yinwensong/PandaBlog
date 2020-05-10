@@ -16,7 +16,7 @@
         >
           <el-input v-model="loginForm.email" class="emailInput"></el-input>
         </el-form-item>
-        <el-form-item
+        <!-- <el-form-item
           label="密码"
           prop="pass"
           :rules="[
@@ -24,21 +24,15 @@
         ]"
         >
           <el-input type="password" v-model="loginForm.pass" autocomplete="off" class="emailInput"></el-input>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <div class="row">
         <nuxt-link to="/register">
           <el-link type="success" class="left">立即注册</el-link>
         </nuxt-link>
-        <nuxt-link to="/find-password">
-          <el-link type="info" class="right">忘记密码？</el-link>
-        </nuxt-link>
       </div>
       <div class="row">
-        <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">登录</el-button>
-      </div>
-      <div class="row">
-        <el-link type="info" @click="closeLogin">暂不登录</el-link>
+        <!-- <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">登录</el-button> -->
       </div>
     </div>
   </div>
@@ -59,16 +53,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // 并且去数据库查询登录正确  跳转回页面
-          axios
-            .post("/api/login", {
-              username: this.loginForm.email,
-              password: this.loginForm.pass
-            })
-            .then(response => {
-              if (response) {
-                console.log(response);
-              }
-            });
+     
         } else {
           return false;
         }

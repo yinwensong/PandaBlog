@@ -51,17 +51,21 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy:true
+  },
+  proxy: {
+    '/api': 'http://localhost:8080'
   },
   /*
   ** Build configuration
   */
   build: {
     transpile: [/^element-ui/],
-    
+
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }
