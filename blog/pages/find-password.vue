@@ -24,24 +24,31 @@
         ]"
         >
           <el-input type="password" v-model="loginForm.pass" autocomplete="off" class="emailInput"></el-input>
-        </el-form-item> -->
+        </el-form-item>-->
       </el-form>
       <div class="row">
-        <nuxt-link to="/register">
-          <el-link type="success" class="left">立即注册</el-link>
-        </nuxt-link>
+        <!-- <nuxt-link to="/register"> -->
+        <!-- <el-link type="success" class="left">立即注册</el-link> -->
+        <!-- </nuxt-link> -->
       </div>
       <div class="row">
-        <!-- <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">登录</el-button> -->
+        <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">立即找回</el-button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
+// const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
+import myCanvas from "~/components/canvasAnimation/canvas.vue";
 
 export default {
+  layout: "simple",
+  head() {
+    return {
+      title: "找回密码"
+    };
+  },
   components: {
     myCanvas
   },
@@ -53,7 +60,6 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // 并且去数据库查询登录正确  跳转回页面
-     
         } else {
           return false;
         }

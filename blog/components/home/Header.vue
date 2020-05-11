@@ -3,21 +3,16 @@
     <el-col :span="6">
       <div class="grid-content bg-purple-light" id="header-left">
         <el-menu
-          :default-active="activeIndex2"
           class="el-menu-demo"
           mode="horizontal"
-          @select="handleSelect"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
         >
           <el-menu-item index="1">
-            <el-avatar :src="img.url">
-              <!-- 点击头像跳到~~ -->
-              <a href="#"></a>
-            </el-avatar>
+            <el-avatar :src="img.url"></el-avatar>
           </el-menu-item>
-          <el-menu-item index="1">
+          <el-menu-item index="panda-2">
             <h2>Panda的博客</h2>
           </el-menu-item>
         </el-menu>
@@ -26,15 +21,14 @@
     <el-col :span="18">
       <div class="grid-content bg-purple-light" id="header-right">
         <el-menu
-          :default-active="activeIndex2"
+          :default-active="$route.name"
           class="el-menu-demo"
           mode="horizontal"
-          @select="handleSelect"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <el-menu-item index="2">
+          <el-menu-item index="login" :route="{name:'login'}">
             <nuxt-link to="/login">
               <template v-if="login">
                 <i class="el-icon-user"></i>
@@ -42,8 +36,8 @@
               <template v-else>登录</template>
             </nuxt-link>
           </el-menu-item>
-          <template  v-if="isAdmin">
-            <el-menu-item index="9">
+          <template v-if="isAdmin">
+            <el-menu-item index="admin" :route="{name:'admin'}">
               <nuxt-link to="/admin">管理员</nuxt-link>
             </el-menu-item>
           </template>
@@ -53,7 +47,7 @@
           <el-menu-item index="1" id="search-input">
             <el-input v-model="searchInput" placeholder="请输入搜索内容"></el-input>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="messageBord" :route="{name:'messageBord'}">
             <nuxt-link to="/messageBord">留言板</nuxt-link>
           </el-menu-item>
           <el-submenu index="4">
@@ -62,13 +56,13 @@
             <el-menu-item index="4-2">选项2</el-menu-item>
             <el-menu-item index="4-3">选项3</el-menu-item>
           </el-submenu>
-          <el-submenu index="5">
+          <el-submenu index="net">
             <template slot="title">网络</template>
             <el-menu-item index="5-1">选项1</el-menu-item>
             <el-menu-item index="5-2">选项2</el-menu-item>
             <el-menu-item index="5-3">选项3</el-menu-item>
           </el-submenu>
-          <el-submenu index="6">
+          <el-submenu index="web" :route="{name:'web'}">
             <template slot="title">前端</template>
             <el-menu-item index="6-1">选项1</el-menu-item>
             <el-menu-item index="6-2">选项2</el-menu-item>
@@ -80,8 +74,8 @@
             <el-menu-item index="7-2">选项2</el-menu-item>
             <el-menu-item index="7-3">选项3</el-menu-item>
           </el-submenu>
-          <el-menu-item index="8">
-            <nuxt-link to="/">首页</nuxt-link>
+          <el-menu-item index="index" :route="{ name: 'index' }">
+            <nuxt-link to="/">首页{{login}}</nuxt-link>
           </el-menu-item>
         </el-menu>
       </div>

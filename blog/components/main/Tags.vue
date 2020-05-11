@@ -39,31 +39,31 @@ export default {
       // tags: ['web前端', 'java', 'linx', '数据库', '算法', 'fsdfsdf', 'fsdfdsfsd', 'fsfsdfsd', 'ffsdfsdfsd']
     };
   },
-  mounted() {
-    const w = this.$refs.list.offsetWidth;
-    this.svgW = w;
-    this.center = w / 2;
-    this.radius = w / 4;
-    let speedX = Math.PI/360;
-    let speedY = Math.PI/360;
-    let tags = [];
-    for (let i = 0; i < this.tagsNum; i++) {
-      const tag = {};
-      const k = -1 + (2 * (i + 1) - 1) / this.tagsNum;
-      const a = Math.acos(k);
-      const b = a * Math.sqrt(this.tagsNum * Math.PI);
-      tag.text = i + "tag";
-      tag.x = Math.floor(this.center + this.radius * Math.sin(a) * Math.cos(b));
-      tag.y = Math.floor(this.center + this.radius * Math.sin(a) * Math.sin(b));
-      tag.z = Math.floor(this.center * Math.cos(a));
-      tags.push(tag);
-    }
-    this.tags = tags;
+  // mounted() {
+  //   const w = this.$refs.list.offsetWidth;
+  //   this.svgW = w;
+  //   this.center = w / 2;
+  //   this.radius = w / 4;
+  //   let speedX = Math.PI/360;
+  //   let speedY = Math.PI/360;
+  //   let tags = [];
+  //   for (let i = 0; i < this.tagsNum; i++) {
+  //     const tag = {};
+  //     const k = -1 + (2 * (i + 1) - 1) / this.tagsNum;
+  //     const a = Math.acos(k);
+  //     const b = a * Math.sqrt(this.tagsNum * Math.PI);
+  //     tag.text = i + "tag";
+  //     tag.x = Math.floor(this.center + this.radius * Math.sin(a) * Math.cos(b));
+  //     tag.y = Math.floor(this.center + this.radius * Math.sin(a) * Math.sin(b));
+  //     tag.z = Math.floor(this.center * Math.cos(a));
+  //     tags.push(tag);
+  //   }
+    // this.tags = tags;
     // setInterval(() => {
       // this.rotateX(speedX);
       // this.rotateY(speedY);
     // }, 17);
-  },
+  // },
   computed: {
     center() {
       return this.svgW / 2;

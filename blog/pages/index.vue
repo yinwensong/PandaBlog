@@ -7,6 +7,7 @@
 <script>
 import Article from '../components/main/Article'
 export default {
+  name:'home',
   components: {
     Article,
   }

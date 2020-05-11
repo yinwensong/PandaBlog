@@ -3,7 +3,7 @@
     <my-canvas></my-canvas>
     <div class="box">
       <el-form
-        hide-required-asterisk = true
+        hide-required-asterisk
         :model="registerForm"
         :rules="rules"
         ref="registerForm"
@@ -24,7 +24,7 @@
           label="邮箱"
           :rules="[
       { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur','change'] }
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }
     ]"
         >
           <el-input v-model="registerForm.email" class="emailInput"></el-input>
@@ -50,18 +50,26 @@
         <el-button type="primary" plain class="btn" @click="submitForm('registerForm')">立即注册</el-button>
       </div>
       <div class="row">
-        <nuxt-link to="/login">
-          <el-link type="info">返回登录页</el-link>
-        </nuxt-link>
+        <!-- <nuxt-link to="/login"> -->
+        <!-- <el-link type="info">返回登录页</el-link> -->
+        <!-- </nuxt-link> -->
       </div>
     </div>
   </div>
 </template>
 <script>
-const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
 import axios from "axios";
+import myCanvas from "~/components/canvasAnimation/canvas.vue";
 
 export default {
+  layout: "simple",
+  head() {
+    return {
+      title: "注册帐户"
+    };
+  },
+  created(){
+  },
   components: {
     myCanvas
   },
@@ -73,15 +81,45 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // alert("submit!");
-          // 注册
-          axios.post("/api/register", {
-            username: this.registerForm.name,
-            password: this.registerForm.pass,
-            email:this.registerForm.email
-          }).then((res)=>{
-            console.log(res);
-          });
+          // 返回注册数据
+          axios
+            .post("/api/register", {
+              username: this.registerForm.name,
+              password: this.registerForm.pass,
+              email: this.registerForm.email
+            })
+            .then(res => {
+              // 弹窗提示邮箱激活或是错误信息
+              if (res.data.code === "ok") {
+                // 注册成功 弹窗去邮箱激活
+                this.$alert("恭喜你！注册成功，请去邮箱激活", "激活帐号", {
+                  confirmButtonText: "确定",
+                  callback: action => {
+                    console.log("去邮箱激活");
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  }
+                });
+              } else {
+                // 注册失败 提示弹窗错误信息
+                this.$alert(
+                  `很抱歉！${res.data.msg} 请更改错误信息`,
+                  "错误提示",
+                  {
+                    confirmButtonText: "重新填写",
+                    callback: action => {
+                      console.log("重新填写错误信息");
+                      // this.$message({
+                      //   type: "info",
+                      //   message: `action: ${action}`
+                      // });
+                    }
+                  }
+                );
+              }
+            });
         } else {
           alert("注册信息填写错误！");
           return false;

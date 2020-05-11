@@ -1,5 +1,5 @@
 <template>
-  <el-row id="article">
+  <el-row id="article"  v-loading>
     <el-col :span="24">
       <ul class="articleList">
         <li v-for="(temp, index) in articleList" :key="index">

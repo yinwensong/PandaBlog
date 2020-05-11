@@ -11,7 +11,7 @@
           label="邮箱"
           :rules="[
       { required: true, message: '请输入邮箱', trigger: 'blur' },
-      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur','change'] }
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }
       ]"
         >
           <el-input v-model="loginForm.email" class="emailInput"></el-input>
@@ -27,12 +27,16 @@
         </el-form-item>
       </el-form>
       <div class="row">
-        <nuxt-link to="/register">
+        <!-- <nuxt-link to="/register"> -->
+        <a href="/register" target="_blank">
           <el-link type="success" class="left">立即注册</el-link>
-        </nuxt-link>
-        <nuxt-link to="/find-password">
+        </a>
+        <!-- </nuxt-link> -->
+        <!-- <nuxt-link to="/find-password"> -->
+        <a href="/find-password" target="_blank">
           <el-link type="info" class="right">忘记密码？</el-link>
-        </nuxt-link>
+        </a>
+        <!-- </nuxt-link> -->
       </div>
       <div class="row">
         <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">登录</el-button>
@@ -45,7 +49,8 @@
 </template>
 <script>
 import axios from "axios";
-const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
+// const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
+import myCanvas from '~/components/canvasAnimation/canvas.vue';
 
 export default {
   components: {
@@ -54,19 +59,30 @@ export default {
 
   methods: {
     // 关闭弹窗
-    closeLogin() {},
+    closeLogin() {
+      this.$router.back();
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // 并且去数据库查询登录正确  跳转回页面
           axios
             .post("/api/login", {
-              username: this.loginForm.email,
+              email: this.loginForm.email,
               password: this.loginForm.pass
             })
             .then(response => {
-              if (response) {
-                console.log(response);
+              const data = response.data;
+              if (data.code === "ok") {
+                // 用户登录成功
+                this.$message({
+                  message: "恭喜你，登录成功",
+                  type: "success"
+                });
+                this.$router.push('/');
+              } else {
+                // 提示邮箱或密码错误
+                this.$message.error(`${data.msg} 请重新输入或立即注册`);
               }
             });
         } else {
