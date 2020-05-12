@@ -79,7 +79,7 @@ router.post('/', async (ctx) => {
         return;
     }
     // 注册  插入一条数据
-    User.create({ name: user.username, email: user.email, password: user.password, sign: 0, ctime: timeutil.getNow() }).then(() => {
+    User.create({ name: user.username, email: user.email, password: user.password, sign: 0,isadmin: 0, ctime: timeutil.getNow() }).then(() => {
     });
     let messageObj = new ResponseObj('ok', '请去邮箱激活', '');
     ctx.body = messageObj;

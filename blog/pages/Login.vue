@@ -27,16 +27,12 @@
         </el-form-item>
       </el-form>
       <div class="row">
-        <!-- <nuxt-link to="/register"> -->
         <a href="/register" target="_blank">
           <el-link type="success" class="left">立即注册</el-link>
         </a>
-        <!-- </nuxt-link> -->
-        <!-- <nuxt-link to="/find-password"> -->
         <a href="/find-password" target="_blank">
           <el-link type="info" class="right">忘记密码？</el-link>
         </a>
-        <!-- </nuxt-link> -->
       </div>
       <div class="row">
         <el-button type="primary" plain class="btn" @click="submitForm('loginForm')">登录</el-button>
@@ -50,7 +46,7 @@
 <script>
 import axios from "axios";
 // const myCanvas = () => import("~/components/canvasAnimation/canvas.vue");
-import myCanvas from '~/components/canvasAnimation/canvas.vue';
+import myCanvas from "~/components/canvasAnimation/canvas.vue";
 
 export default {
   components: {
@@ -61,6 +57,12 @@ export default {
     // 关闭弹窗
     closeLogin() {
       this.$router.back();
+    },
+    loginSuccess() {
+      this.$store.commit("user/login", true);
+    },
+    adminLogin() {
+      this.$store.commit("user/setAdmin", true);
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
@@ -79,10 +81,14 @@ export default {
                   message: "恭喜你，登录成功",
                   type: "success"
                 });
-                this.$router.push('/');
+                this.loginSuccess();
+                if (data.data.isadmin == 1) {
+                  this.adminLogin();
+                }
+                this.$router.push("/");
               } else {
                 // 提示邮箱或密码错误
-                this.$message.error(`${data.msg} 请重新输入或立即注册`);
+                this.$message.error(data.msg);
               }
             });
         } else {

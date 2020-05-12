@@ -16,7 +16,6 @@ let sequelize = new Sequelize(cfg.database, cfg.user, cfg.password, {
         max: 10,
         min: 1,
         idle: 30000
-
     }
 });
 
@@ -28,6 +27,7 @@ let User = sequelize.define('user', {
     name: Sequelize.STRING(64),
     password: Sequelize.STRING(64),
     email: Sequelize.STRING(128),
+    isadmin: Sequelize.TINYINT,
     sign: Sequelize.TINYINT,
     ctime: Sequelize.INTEGER
 }, {

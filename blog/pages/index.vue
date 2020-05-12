@@ -8,6 +8,7 @@
 import Article from '../components/main/Article'
 export default {
   name:'home',
+  // middleware: 'header',
   components: {
     Article,
   }

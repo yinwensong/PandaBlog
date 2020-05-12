@@ -29,18 +29,29 @@
           active-text-color="#ffd04b"
         >
           <el-menu-item index="login" :route="{name:'login'}">
-            <nuxt-link to="/login">
-              <template v-if="login">
-                <i class="el-icon-user"></i>
-              </template>
-              <template v-else>登录</template>
-            </nuxt-link>
+            <el-popover placement="bottom" width="160" v-model="visible" @hide="unlogin()">
+              <p>点击确定退出登录 是否要退出？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="visible = false">
+                  <!-- <a href="/" style="color:#fff;">确定</a></el-button> -->
+                  确定
+                </el-button>
+              </div>
+              <el-button
+                slot="reference"
+                :class="{ hide: !login}"
+                style="background:none; border:none; color:#ccc;"
+              >
+                <i class="el-icon-user model"></i>
+              </el-button>
+            </el-popover>
+
+            <nuxt-link to="/login" :class="{ hide: login}">登录</nuxt-link>
           </el-menu-item>
-          <template v-if="isAdmin">
-            <el-menu-item index="admin" :route="{name:'admin'}">
-              <nuxt-link to="/admin">管理员</nuxt-link>
-            </el-menu-item>
-          </template>
+          <el-menu-item index="admin" :route="{name:'admin'}" :class="{ hide: isAdmin  == false }">
+            <nuxt-link to="/admin">管理员</nuxt-link>
+          </el-menu-item>
           <el-menu-item class="search-btn">
             <i class="el-icon-search"></i>
           </el-menu-item>
@@ -75,7 +86,7 @@
             <el-menu-item index="7-3">选项3</el-menu-item>
           </el-submenu>
           <el-menu-item index="index" :route="{ name: 'index' }">
-            <nuxt-link to="/">首页{{login}}</nuxt-link>
+            <nuxt-link to="/">首页</nuxt-link>
           </el-menu-item>
         </el-menu>
       </div>
@@ -83,17 +94,38 @@
   </el-row>
 </template>
 <script>
+import Cookies from "js-cookie";
 export default {
   name: "VHeader",
   data() {
     return {
       searchInput: "",
-      login: this.$store.state.login.isLogin,
-      isAdmin: true,
       img: {
         url: require("~/static/images/panda.png")
-      }
+      },
+      // 控制推出登录弹框
+      visible: false
     };
+  },
+  computed: {
+    login() {
+      return this.$store.state.user.loginStatus;
+    },
+    isAdmin() {
+      return this.$store.state.user.adminStatus;
+    }
+  },
+  methods: {
+    // 退出登录
+    unlogin() {
+      // 清空cookie 成功后刷新页面;
+      console.log(Cookies.set("na", "value"));
+      console.log(Cookies.get("na"));
+      Cookies.remove("na");
+      Cookies.remove("id");
+      // console.log(this.$cookie.get('id'))
+      // this.$router.push('/');
+    }
   }
 };
 </script>
@@ -102,11 +134,6 @@ export default {
 #header-right .el-menu--horizontal > .el-menu-item {
   float: right;
 }
-/* .el-header {
-  position: fixed;
-  top:0;
-  left:0;
-} */
 .el-header,
 .el-footer {
   padding: 0;
@@ -122,5 +149,10 @@ export default {
   padding: 0;
   margin-right: 10px;
   height: 0px;
+}
+.hide {
+  position: relative;
+  display: none;
+  width: 0;
 }
 </style>
